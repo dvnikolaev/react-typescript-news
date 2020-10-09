@@ -1,23 +1,18 @@
 import React, { useState } from "react";
-import { Button, makeStyles, Modal, TextField, Typography } from "@material-ui/core";
+import { connect } from "react-redux";
+import { Button, makeStyles, TextField, Typography } from "@material-ui/core";
+
+import { onSignIn } from "../../store/actions/auth/auth";
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    position: "absolute",
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    top: `50%`,
-    left: `50%`,
-    transform: `translate(-50%,-50%)`,
-    padding: theme.spacing(2, 4, 3),
-  },
   button: {
     marginTop: theme.spacing(1),
   },
 }));
 
-export const AuthSignIn: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const AuthBody: React.FC<{ setIsOpen(value: boolean): void }> = ({
+  setIsOpen,
+}) => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -25,9 +20,11 @@ export const AuthSignIn: React.FC = () => {
 
   const buttonIsDisable = !username || !password;
 
-  const body = (
-    <div className={classes.paper}>
-      <Typography variant="h5" align="center" paragraph>Вход в систему</Typography>
+  return (
+    <>
+      <Typography variant="h5" align="center" paragraph>
+        Вход в систему
+      </Typography>
       <form>
         <TextField
           fullWidth
@@ -65,17 +62,8 @@ export const AuthSignIn: React.FC = () => {
           Отмена
         </Button>
       </form>
-    </div>
-  );
-
-  return (
-    <>
-      <Button color="inherit" onClick={() => setIsOpen(true)}>
-        Войти
-      </Button>
-      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        {body}
-      </Modal>
     </>
   );
 };
+
+export default AuthBody;

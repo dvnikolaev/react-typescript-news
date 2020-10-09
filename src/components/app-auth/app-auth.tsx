@@ -1,21 +1,17 @@
 import React, { useState } from "react";
 import { Button } from "@material-ui/core";
-import { AuthSignIn } from "./app-navbar-auth-signin";
+import AuthSignIn from "./app-auth-signin";
 
-export const AppNavbarAuth: React.FC = () => {
+export const AppAuth: React.FC = () => {
   const [isAuth, setIsAuth] = useState(true);
 
   const renderAuthButton = () => {
     if (!isAuth) {
       return <Button color="inherit">Выйти</Button>;
     } else {
-      return <AuthSignIn />
+      return <AuthSignIn />;
     }
   };
 
-  return (
-    <div>
-      {renderAuthButton()}
-    </div>
-  );
+  return <div>{renderAuthButton()}</div>;
 };
