@@ -12,10 +12,11 @@ export const onSignIn = (username: string, password: string) => {
   if (foundedUser) {
     return {
       type: SIGN_IN,
+      payload: foundedUser,
     };
   } else {
     return {
-      type: '',
+      type: "",
     };
   }
 };
