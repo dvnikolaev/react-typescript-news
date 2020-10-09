@@ -10,9 +10,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AuthBody: React.FC<{ setIsOpen(value: boolean): void }> = ({
-  setIsOpen,
-}) => {
+const AuthBody: React.FC<{
+  setIsOpen(value: boolean): void;
+  onSignIn(username: string, password: string): void;
+}> = ({ setIsOpen, onSignIn }) => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -20,12 +21,19 @@ const AuthBody: React.FC<{ setIsOpen(value: boolean): void }> = ({
 
   const buttonIsDisable = !username || !password;
 
+  const onSubmitHandler = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (username && password) {
+      onSignIn(username, password);
+    }
+  };
+
   return (
     <>
       <Typography variant="h5" align="center" paragraph>
         Вход в систему
       </Typography>
-      <form>
+      <form onSubmit={(e) => onSubmitHandler(e)}>
         <TextField
           fullWidth
           label="Логин"
@@ -48,7 +56,9 @@ const AuthBody: React.FC<{ setIsOpen(value: boolean): void }> = ({
           fullWidth
           variant="contained"
           color="primary"
+          type="submit"
           disabled={buttonIsDisable}
+          onClick={onSubmitHandler}
         >
           Вход
         </Button>
@@ -66,4 +76,4 @@ const AuthBody: React.FC<{ setIsOpen(value: boolean): void }> = ({
   );
 };
 
-export default AuthBody;
+export default connect(null, { onSignIn })(AuthBody);
