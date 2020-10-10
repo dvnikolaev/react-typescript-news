@@ -40,7 +40,7 @@ const INITIAL_STATE: IAuthState = {
 export default (state = INITIAL_STATE, action: any): IAuthState => {
   switch (action.type) {
     case SIGN_IN:
-      return {...state, user: action.payload};
+      return {...state, user: action.payload, isAuth: true};
     default:
       return state;
   }
