@@ -5,7 +5,7 @@ interface IUser {
   isAdmin: boolean;
 }
 
-interface IError {
+export interface IError {
   isShow: boolean;
   text: string;
 }
