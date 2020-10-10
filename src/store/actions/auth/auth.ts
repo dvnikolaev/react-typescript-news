@@ -20,3 +20,9 @@ export const onSignIn = (username: string, password: string) => {
     };
   }
 };
+
+export const onSignOut = () => {
+  return {
+    type: SIGN_OUT
+  }
+}

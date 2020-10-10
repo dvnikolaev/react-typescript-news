@@ -1,4 +1,4 @@
-import { SIGN_IN } from "../actions/auth/types";
+import { SIGN_IN, SIGN_OUT } from "../actions/auth/types";
 
 interface IAuthState {
   isAuth: boolean;
@@ -7,7 +7,7 @@ interface IAuthState {
 }
 
 interface IUser {
-  id: number | null,
+  id: number | null;
   username: string;
   password: string;
   isAdmin: boolean;
@@ -17,30 +17,32 @@ const INITIAL_STATE: IAuthState = {
   isAuth: false,
   user: {
     id: null,
-    username: '',
-    password: '',
-    isAdmin: false
+    username: "",
+    password: "",
+    isAdmin: false,
   },
   usersList: [
     {
       id: 1,
       username: "admin",
       password: "admin",
-      isAdmin: true
+      isAdmin: true,
     },
     {
       id: 2,
       username: "user",
       password: "user",
-      isAdmin: false
-    }
-  ]
+      isAdmin: false,
+    },
+  ],
 };
 
 export default (state = INITIAL_STATE, action: any): IAuthState => {
   switch (action.type) {
     case SIGN_IN:
-      return {...state, user: action.payload, isAuth: true};
+      return { ...state, user: action.payload, isAuth: true };
+    case SIGN_OUT:
+      return { ...state, isAuth: false };
     default:
       return state;
   }
