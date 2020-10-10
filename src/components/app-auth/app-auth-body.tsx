@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import { Button, makeStyles, TextField, Typography } from "@material-ui/core";
 
 import { onSignIn } from "../../store/actions/auth/auth";
+import AppAuthError from "./app-auth-errror";
 
 const useStyles = makeStyles((theme) => ({
-  button: {
+  spacingTop: {
     marginTop: theme.spacing(1),
   },
 }));
@@ -33,6 +34,7 @@ const AuthBody: React.FC<{
       <Typography variant="h5" align="center" paragraph>
         Вход в систему
       </Typography>
+      <AppAuthError />
       <form onSubmit={(e) => onSubmitHandler(e)}>
         <TextField
           fullWidth
@@ -40,6 +42,7 @@ const AuthBody: React.FC<{
           variant="outlined"
           size="small"
           value={username}
+          className={classes.spacingTop}
           onChange={(e) => setUsername(e.target.value)}
         />
         <TextField
@@ -65,7 +68,7 @@ const AuthBody: React.FC<{
         <Button
           fullWidth
           variant="outlined"
-          className={classes.button}
+          className={classes.spacingTop}
           color="secondary"
           onClick={() => setIsOpen(false)}
         >
