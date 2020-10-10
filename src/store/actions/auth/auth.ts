@@ -15,6 +15,8 @@ export const onSignIn = (username: string, password: string) => {
       payload: foundedUser,
     };
   } else {
+    store.dispatch(setSignInError(true));
+    
     return {
       type: "",
     };
@@ -27,8 +29,9 @@ export const onSignOut = () => {
   }
 }
 
-export const setSignInError = () => {
+export const setSignInError = (value: boolean) => {
   return {
-    type: SIGN_IN_ERROR
+    type: SIGN_IN_ERROR,
+    payload: value
   }
 }
