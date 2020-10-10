@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Button, makeStyles, TextField, Typography } from "@material-ui/core";
 
-import { onSignIn } from "../../store/actions/auth/auth";
+import { onSignIn, setSignInError } from "../../store/actions/auth/auth";
 import AppAuthError from "./app-auth-errror";
 
 const useStyles = makeStyles((theme) => ({
@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
 const AuthBody: React.FC<{
   setIsOpen(value: boolean): void;
   onSignIn(username: string, password: string): void;
-}> = ({ setIsOpen, onSignIn }) => {
+  setSignInError(value: boolean): void;
+}> = ({ setIsOpen, onSignIn, setSignInError }) => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -28,6 +29,11 @@ const AuthBody: React.FC<{
       onSignIn(username, password);
     }
   };
+
+  const closeModal = () => {
+    setIsOpen(false);
+    setSignInError(false);
+  }
 
   return (
     <>
@@ -70,7 +76,7 @@ const AuthBody: React.FC<{
           variant="outlined"
           className={classes.spacingTop}
           color="secondary"
-          onClick={() => setIsOpen(false)}
+          onClick={() => closeModal()}
         >
           Отмена
         </Button>
@@ -79,4 +85,4 @@ const AuthBody: React.FC<{
   );
 };
 
-export default connect(null, { onSignIn })(AuthBody);
+export default connect(null, { onSignIn, setSignInError })(AuthBody);
