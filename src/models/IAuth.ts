@@ -5,8 +5,14 @@ interface IUser {
   isAdmin: boolean;
 }
 
+interface IError {
+  isShow: boolean;
+  text: string;
+}
+
 export interface IAuthState {
   isAuth: boolean;
   user: IUser;
   usersList: IUser[];
+  errorSignIn: IError;
 }

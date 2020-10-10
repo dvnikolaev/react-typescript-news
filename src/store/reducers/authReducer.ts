@@ -1,6 +1,6 @@
 import { SIGN_IN, SIGN_OUT } from "../actions/auth/types";
 
-import { IAuthState } from '../../models/IAuth';
+import { IAuthState } from "../../models/IAuth";
 
 const INITIAL_STATE: IAuthState = {
   isAuth: false,
@@ -24,12 +24,21 @@ const INITIAL_STATE: IAuthState = {
       isAdmin: false,
     },
   ],
+  errorSignIn: {
+    isShow: false,
+    text: "Неправильный логин или пароль",
+  },
 };
 
 export default (state = INITIAL_STATE, action: any): IAuthState => {
   switch (action.type) {
     case SIGN_IN:
-      return { ...state, user: action.payload, isAuth: true };
+      return {
+        ...state,
+        user: action.payload,
+        isAuth: true,
+        errorSignIn: { ...state.errorSignIn, isShow: false },
+      };
     case SIGN_OUT:
       return { ...state, isAuth: false };
     default:
