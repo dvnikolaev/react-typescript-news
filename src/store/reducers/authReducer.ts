@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_OUT } from "../actions/auth/types";
+import { SIGN_IN, SIGN_OUT, SIGN_IN_ERROR } from "../actions/auth/types";
 
 import { IAuthState } from "../../models/IAuth";
 
@@ -41,6 +41,12 @@ export default (state = INITIAL_STATE, action: any): IAuthState => {
       };
     case SIGN_OUT:
       return { ...state, isAuth: false };
+    case SIGN_IN_ERROR: {
+      return {
+        ...state,
+        errorSignIn: { ...state.errorSignIn, isShow: action.payload },
+      };
+    }
     default:
       return state;
   }
