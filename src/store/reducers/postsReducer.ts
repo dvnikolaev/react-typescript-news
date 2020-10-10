@@ -1,4 +1,5 @@
 import { IPostState } from '../../models/IPost';
+import { ADD_POST } from '../actions/posts/types';
 
 const INITIAL_STATE: IPostState = {
   posts: [
@@ -30,4 +31,13 @@ const INITIAL_STATE: IPostState = {
       isAccept: false,
     },
   ]
+}
+
+export default (state = INITIAL_STATE, action: any) => {
+  switch (action.type) {
+    case ADD_POST:
+      return {...state, posts: [...state.posts, action.payload]}
+    default:
+      return {...state};
+  }
 }
