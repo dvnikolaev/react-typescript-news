@@ -1,17 +1,6 @@
 import { SIGN_IN, SIGN_OUT } from "../actions/auth/types";
 
-interface IAuthState {
-  isAuth: boolean;
-  user: IUser;
-  usersList: IUser[];
-}
-
-interface IUser {
-  id: number | null;
-  username: string;
-  password: string;
-  isAdmin: boolean;
-}
+import { IAuthState } from '../../models/IAuth';
 
 const INITIAL_STATE: IAuthState = {
   isAuth: false,
