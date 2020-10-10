@@ -1,13 +1,20 @@
-import React, { useState } from "react";
-import { Button } from "@material-ui/core";
+import React from "react";
+import { connect } from "react-redux";
+import { Button, Typography } from "@material-ui/core";
 import AuthSignIn from "./app-auth-signin";
 
-export const AppAuth: React.FC = () => {
-  const [isAuth, setIsAuth] = useState(true);
-
+const AppAuth: React.FC<{ isAuth: boolean; username: string }> = ({
+  isAuth,
+  username,
+}) => {
   const renderAuthButton = () => {
-    if (!isAuth) {
-      return <Button color="inherit">Выйти</Button>;
+    if (isAuth) {
+      return (
+        <>
+          <Typography>{username}</Typography>
+          <Button color="inherit">Выйти</Button>
+        </>
+      );
     } else {
       return <AuthSignIn />;
     }
@@ -15,3 +22,12 @@ export const AppAuth: React.FC = () => {
 
   return <div>{renderAuthButton()}</div>;
 };
+
+const mapStateToProps = (state: any) => {
+  return {
+    isAuth: state.auth.isAuth,
+    username: state.auth.user.username,
+  };
+};
+
+export default connect(mapStateToProps)(AppAuth);
