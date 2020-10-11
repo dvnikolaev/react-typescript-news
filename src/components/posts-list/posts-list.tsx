@@ -36,9 +36,7 @@ const PostsList = () => {
   const renderPostItems = posts.map((item) => (
     <PostsListItem
       key={item.id}
-      title={item.title}
-      description={item.description}
-      date={item.date}
+      item={item}
     />
   ));
 
