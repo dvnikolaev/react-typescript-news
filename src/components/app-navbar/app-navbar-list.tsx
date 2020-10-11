@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import { Tab, Tabs } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 
@@ -8,7 +9,8 @@ interface INavItem {
 }
 
 export const AppNavbarList: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(0);
+  const history = useHistory();
+  const [currentPage, setCurrentPage] = useState(history.location.pathname);
 
   const navItems: INavItem[] = [
     {
@@ -26,6 +28,7 @@ export const AppNavbarList: React.FC = () => {
       <Tab
         label={item.label}
         to={item.link}
+        value={item.link}
         component={NavLink}
         key={item.label}
       />
@@ -37,7 +40,7 @@ export const AppNavbarList: React.FC = () => {
   };
 
   return (
-    <Tabs value={currentPage} onChange={onChangeHandler}>
+    <Tabs value={history.location.pathname} onChange={onChangeHandler}>
       {renderTabsItems}
     </Tabs>
   );
