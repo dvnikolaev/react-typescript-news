@@ -1,5 +1,6 @@
 import { store } from "../../index";
 
+import { IUser } from "../../../models/IAuth";
 import { SIGN_IN, SIGN_OUT, SIGN_IN_ERROR } from "./types";
 
 export const onSignIn = (username: string, password: string) => {
@@ -16,7 +17,7 @@ export const onSignIn = (username: string, password: string) => {
     };
   } else {
     store.dispatch(setSignInError(true));
-    
+
     return {
       type: "",
     };
@@ -24,14 +25,22 @@ export const onSignIn = (username: string, password: string) => {
 };
 
 export const onSignOut = () => {
+  const user: IUser = {
+    id: null,
+    username: "",
+    password: "",
+    isAdmin: false,
+  };
+
   return {
-    type: SIGN_OUT
-  }
-}
+    type: SIGN_OUT,
+    payload: user,
+  };
+};
 
 export const setSignInError = (value: boolean) => {
   return {
     type: SIGN_IN_ERROR,
-    payload: value
-  }
-}
+    payload: value,
+  };
+};

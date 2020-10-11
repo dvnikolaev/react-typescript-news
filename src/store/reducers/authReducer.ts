@@ -40,7 +40,7 @@ export default (state = INITIAL_STATE, action: any): IAuthState => {
         errorSignIn: { ...state.errorSignIn, isShow: false },
       };
     case SIGN_OUT:
-      return { ...state, isAuth: false };
+      return { ...state, isAuth: false, user: action.payload };
     case SIGN_IN_ERROR: {
       return {
         ...state,
