@@ -23,7 +23,7 @@ const INITIAL_STATE: IPostState = {
     },
     {
       id: 3,
-      author_id: 1,
+      author_id: 2,
       title: "de Finibus Bonorum et Malorum.",
       description:
         "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis",
