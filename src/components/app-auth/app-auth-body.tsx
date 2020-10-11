@@ -37,7 +37,7 @@ const AuthBody: React.FC<{
 
   return (
     <>
-      <Typography variant="h5" align="center" paragraph>
+      <Typography variant="h5" align="center" gutterBottom>
         Вход в систему
       </Typography>
       <AppAuthError />
