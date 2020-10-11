@@ -13,12 +13,9 @@ const AppAuth: React.FC<{
   const renderAuthButton = () => {
     if (isAuth) {
       return (
-        <>
-          <Typography>{username}</Typography>
-          <Button color="inherit" onClick={() => onSignOut()}>
-            Выйти
-          </Button>
-        </>
+        <Button color="inherit" onClick={() => onSignOut()}>
+          Выйти
+        </Button>
       );
     } else {
       return <AuthSignIn />;
