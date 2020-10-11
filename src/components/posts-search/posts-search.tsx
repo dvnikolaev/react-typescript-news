@@ -9,6 +9,7 @@ const SearchPost: React.FC<{
     <TextField
       variant="outlined"
       fullWidth
+      margin="dense"
       label="Поиск"
       size="small"
       value={search}
