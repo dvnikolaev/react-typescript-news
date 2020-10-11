@@ -40,7 +40,7 @@ export const AppNavbarList: React.FC = () => {
   };
 
   return (
-    <Tabs value={history.location.pathname} onChange={onChangeHandler}>
+    <Tabs value={currentPage} onChange={onChangeHandler}>
       {renderTabsItems}
     </Tabs>
   );
