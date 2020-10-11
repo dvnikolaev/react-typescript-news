@@ -1,46 +1,21 @@
 import React from "react";
+import { connect } from "react-redux";
+import { IPost } from "../../models/IPost";
 
 import PostsListItem from "./posts-list-item";
 
-const PostsList = () => {
-  const posts = [
-    {
-      id: 1,
-      author_id: 1,
-      title: "Lorem, ipsum.",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, aliquid.",
-      date: "2020-09-23",
-      isAccept: true,
-    },
-    {
-      id: 2,
-      author_id: 1,
-      title: "Expedita provident eligendi.",
-      description:
-        "Expedita provident eligendi repellendus corrupti culpa soluta laboriosam sint?",
-      date: "2020-09-23",
-      isAccept: true,
-    },
-    {
-      id: 3,
-      author_id: 1,
-      title: "de Finibus Bonorum et Malorum.",
-      description:
-        "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis",
-      date: "2020-09-23",
-      isAccept: false,
-    },
-  ];
-
+const PostsList: React.FC<{ posts: IPost[] }> = ({ posts }) => {
   const renderPostItems = posts.map((item) => (
-    <PostsListItem
-      key={item.id}
-      item={item}
-    />
+    <PostsListItem key={item.id} item={item} />
   ));
 
   return <div>{renderPostItems}</div>;
 };
 
-export default PostsList;
+const mapStateToProps = (state: any) => {
+  return {
+    posts: state.posts.posts,
+  };
+};
+
+export default connect(mapStateToProps)(PostsList);
