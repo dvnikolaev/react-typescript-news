@@ -1,7 +1,7 @@
 import { Button, CardActions, makeStyles } from "@material-ui/core";
 import React from "react";
 import { connect } from "react-redux";
-import { onAcceptPost } from "../../store/actions/posts/posts";
+import { onAcceptPost, onDeclinePost } from "../../store/actions/posts/posts";
 
 const useStyles = makeStyles({
   cardAction: {
@@ -19,12 +19,17 @@ const ItemActions: React.FC<{
   id: number;
   isAccept: boolean;
   onAcceptPost(id: number): void;
-}> = ({ isAdmin, id, isAccept, onAcceptPost }) => {
+  onDeclinePost(id: number): void;
+}> = ({ isAdmin, id, isAccept, onAcceptPost, onDeclinePost }) => {
   const classes = useStyles();
 
   const acceptPostHandler = () => {
     onAcceptPost(id);
   };
+
+  const onDeclineHandler = () => {
+    onDeclinePost(id);
+  }
 
   if (!isAdmin) {
     return null;
@@ -46,6 +51,7 @@ const ItemActions: React.FC<{
           color="secondary"
           fullWidth
           className={classes.actionButton}
+          onClick={onDeclineHandler}
         >
           Отклонить
         </Button>
@@ -61,4 +67,4 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export default connect(mapStateToProps, { onAcceptPost })(ItemActions);
+export default connect(mapStateToProps, { onAcceptPost, onDeclinePost })(ItemActions);

@@ -1,5 +1,5 @@
 import { IPostState } from "../../models/IPost";
-import { ACCEPT_POST, ADD_POST } from "../actions/posts/types";
+import { ACCEPT_POST, ADD_POST, DECLINE_POST } from "../actions/posts/types";
 
 const INITIAL_STATE: IPostState = {
   posts: [
@@ -47,6 +47,11 @@ export default (state = INITIAL_STATE, action: any) => {
           return item;
         }),
       };
+    case DECLINE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter(item => item.id !== action.payload)
+      }
     default:
       return { ...state };
   }
