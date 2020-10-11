@@ -29,7 +29,6 @@ const PostsList: React.FC<{
 };
 
 const mapStateToProps = (state: any, ownProps: any) => {
-  console.log(ownProps);
   return {
     acceptedPosts: state.posts.posts.filter((item: IPost) => {
       return (
