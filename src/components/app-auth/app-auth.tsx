@@ -1,15 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Typography } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 import { onSignOut } from "../../store/actions/auth/auth";
 import AuthSignIn from "./app-auth-signin";
 
 const AppAuth: React.FC<{
   isAuth: boolean;
-  username: string;
   onSignOut(): void;
-}> = ({ isAuth, username, onSignOut }) => {
+}> = ({ isAuth, onSignOut }) => {
   const renderAuthButton = () => {
     if (isAuth) {
       return (
@@ -27,8 +26,7 @@ const AppAuth: React.FC<{
 
 const mapStateToProps = (state: any) => {
   return {
-    isAuth: state.auth.isAuth,
-    username: state.auth.user.username,
+    isAuth: state.auth.isAuth
   };
 };
 
