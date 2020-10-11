@@ -21,7 +21,7 @@ const AuthBody: React.FC<{
 
   const classes = useStyles();
 
-  const buttonIsDisable = !username || !password;
+  const buttonIsDisable = !username.trim() || !password.trim();
 
   const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ const AuthBody: React.FC<{
   const closeModal = () => {
     setIsOpen(false);
     setSignInError(false);
-  }
+  };
 
   return (
     <>

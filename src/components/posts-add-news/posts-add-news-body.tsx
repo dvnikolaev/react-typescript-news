@@ -11,7 +11,7 @@ const AddNewsBody: React.FC<{
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const buttonIsDisable = !title || !description;
+  const buttonIsDisable = !title.trim() || !description.trim();
 
   const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
