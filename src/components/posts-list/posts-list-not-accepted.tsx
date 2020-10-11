@@ -16,7 +16,8 @@ const PostsNotAccepted: React.FC<{
   isAdmin: boolean;
   userId: number;
   hasOwnNotAcceptedPosts: boolean;
-}> = ({ notAcceptedPosts, isAdmin, userId, hasOwnNotAcceptedPosts }) => {
+  search: string;
+}> = ({ notAcceptedPosts, isAdmin, userId, hasOwnNotAcceptedPosts, search }) => {
   const classes = useStyles();
 
   const renderListItem = notAcceptedPosts.map((item) => {
@@ -52,9 +53,15 @@ const PostsNotAccepted: React.FC<{
   );
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: any, ownProps: any) => {
   return {
-    notAcceptedPosts: state.posts.posts.filter((item: IPost) => !item.isAccept),
+    notAcceptedPosts: state.posts.posts.filter(
+      (item: IPost) =>
+        !item.isAccept &&
+        (item.title.toLowerCase().includes(ownProps.search) ||
+          item.description.toLowerCase().includes(ownProps.search) ||
+          item.date.includes(ownProps.search))
+    ),
     isAdmin: state.auth.user.isAdmin,
     userId: state.auth.user.id,
     hasOwnNotAcceptedPosts: state.posts.posts.some(

@@ -8,7 +8,8 @@ import PostsNotAccepted from "./posts-list-not-accepted";
 
 const PostsList: React.FC<{
   acceptedPosts: IPost[];
-}> = ({ acceptedPosts }) => {
+  search: string;
+}> = ({ acceptedPosts, search }) => {
   const renderAcceptedPosts = () => {
     if (!acceptedPosts.length) {
       return null;
@@ -20,16 +21,24 @@ const PostsList: React.FC<{
 
   return (
     <div>
-      <PostsNotAccepted />
+      <PostsNotAccepted search={search}/>
       <Typography variant="h4">Новости</Typography>
       {renderAcceptedPosts()}
     </div>
   );
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: any, ownProps: any) => {
+  console.log(ownProps);
   return {
-    acceptedPosts: state.posts.posts.filter((item: IPost) => item.isAccept),
+    acceptedPosts: state.posts.posts.filter((item: IPost) => {
+      return (
+        item.isAccept &&
+        (item.title.toLowerCase().includes(ownProps.search) ||
+          item.description.toLowerCase().includes(ownProps.search) ||
+          item.date.includes(ownProps.search))
+      );
+    }),
   };
 };
 
