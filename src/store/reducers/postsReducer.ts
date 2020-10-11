@@ -1,5 +1,5 @@
-import { IPostState } from '../../models/IPost';
-import { ADD_POST } from '../actions/posts/types';
+import { IPostState } from "../../models/IPost";
+import { ACCEPT_POST, ADD_POST } from "../actions/posts/types";
 
 const INITIAL_STATE: IPostState = {
   posts: [
@@ -30,14 +30,24 @@ const INITIAL_STATE: IPostState = {
       date: "2020-09-23",
       isAccept: false,
     },
-  ]
-}
+  ],
+};
 
 export default (state = INITIAL_STATE, action: any) => {
   switch (action.type) {
     case ADD_POST:
-      return {...state, posts: [...state.posts, action.payload]}
+      return { ...state, posts: [...state.posts, action.payload] };
+    case ACCEPT_POST:
+      return {
+        ...state,
+        posts: state.posts.map((item) => {
+          if (item.id === action.payload) {
+            return { ...item, isAccept: true };
+          }
+          return item;
+        }),
+      };
     default:
-      return {...state};
+      return { ...state };
   }
-}
+};
