@@ -1,5 +1,3 @@
-import { store } from '../../index';
-
 import { Post } from "../../../models/IPost";
 import { ACCEPT_POST, ADD_POST } from "./types";
 
@@ -13,10 +11,8 @@ export const addPost = (author_id: number, title: string, description: string) =
 }
 
 export const onAcceptPost = (id: number) => {
-  const foundedIndex: number = store.getState().posts.posts.findIndex(item => item.id === id);
-
   return {
     type: ACCEPT_POST,
-    payload: foundedIndex
+    payload: id
   }
 }
