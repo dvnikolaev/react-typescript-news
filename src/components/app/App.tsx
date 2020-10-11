@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { AppNavBar } from "../app-navbar/app-navbar";
 import PagePosts from "../../routes/Posts";
+import IndexPage from "../../routes/Index";
 
 export const App: React.FC = () => {
   return (
@@ -11,6 +12,9 @@ export const App: React.FC = () => {
       <Container>
         <AppNavBar />
         <Switch>
+          <Route path="/" exact>
+            <IndexPage />
+          </Route>
           <Route path="/news">
             <PagePosts />
           </Route>
