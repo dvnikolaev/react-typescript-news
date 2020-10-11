@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/react-typescript-news/static/js/main.7e6272b6.chunk.js",
+    "main.js.map": "/react-typescript-news/static/js/main.7e6272b6.chunk.js.map",
+    "runtime-main.js": "/react-typescript-news/static/js/runtime-main.429c8b47.js",
+    "runtime-main.js.map": "/react-typescript-news/static/js/runtime-main.429c8b47.js.map",
+    "static/js/2.b965ae5d.chunk.js": "/react-typescript-news/static/js/2.b965ae5d.chunk.js",
+    "static/js/2.b965ae5d.chunk.js.map": "/react-typescript-news/static/js/2.b965ae5d.chunk.js.map",
+    "index.html": "/react-typescript-news/index.html",
+    "precache-manifest.0ad500a678840a40cebc630af0ffcb4d.js": "/react-typescript-news/precache-manifest.0ad500a678840a40cebc630af0ffcb4d.js",
+    "service-worker.js": "/react-typescript-news/service-worker.js",
+    "static/js/2.b965ae5d.chunk.js.LICENSE.txt": "/react-typescript-news/static/js/2.b965ae5d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.429c8b47.js",
+    "static/js/2.b965ae5d.chunk.js",
+    "static/js/main.7e6272b6.chunk.js"
+  ]
+}
